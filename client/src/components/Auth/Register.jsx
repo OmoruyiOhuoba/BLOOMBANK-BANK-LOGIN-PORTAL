@@ -1,9 +1,9 @@
 import React,{useState} from "react";
-import {Link, withRouter} from "react-router-dom";
-import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {registerUser} from "../../actions/authActions";
 import classnames from "classnames";
+
 
 
 const Register = () => {
@@ -44,6 +44,8 @@ const Register = () => {
               user: newUser,
             }
 
+            console.log(submit.user);
+
             if (submit.user) {
               dispatch(registerUser(newUser))
               setNewUserData((prevState) => {
@@ -55,7 +57,6 @@ const Register = () => {
             console.log(newUser);
 
     };
-
 
 
     return (
