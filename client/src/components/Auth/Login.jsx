@@ -1,38 +1,39 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import classnames from "classnames";
+import {loginUser} from "../../actions/authActions";
 
 const Login = () => {
 
-const [userState, setUserState] = useState({
+const [userData, setUserData] = useState({
     email: "",
     password: "",
+    errors:{},
 });
 
-const [userData, setUserData] = useState([]);
+const dispatch = useDispatch();
+
+
 
     const HandleChange = (event) => {
         const {name, value} =event.target;
 
-        setUserState(prevData => {
+        setUserData(prevData => {
             return {
                 ...prevData, [name]: value
             }
         });
 
-        console.log(userState);
+        console.log(userData);
     }
 
     const HandleSubmit = (event) => {
         event.preventDefault();
 
-        setUserData(prevState => {
-            return [
-                ...prevState, userState
-            ]
-        });
-
-        console.log(userData);
+     
     }
+
     return (
         <div>
             <div className="container">

@@ -6,8 +6,12 @@ import Register from "./Auth/Register";
 import Login from "./Auth/Login";
 import Dashboard from "./Dashboard";
 import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const App = () => {
+    const dispatch = useDispatch();
+
     return (
         <div>
             <Router>     

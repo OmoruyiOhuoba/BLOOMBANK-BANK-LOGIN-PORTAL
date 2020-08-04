@@ -15,15 +15,9 @@ const Register = () => {
     password2:"",
     errors: {}
     });
-    const [newUser, setNewUserData] = useState([]);
 
     const dispatch = useDispatch();
     
-    const { auth, errors } = useSelector(state => ({
-      auth: state.auth,
-      errors: state.errors,
-    }));  
-
     const HandleChange = (event) =>{
         const {name, value} = event.target;
        
@@ -40,21 +34,9 @@ const Register = () => {
     const HandleSubmit = (event) => {
             event.preventDefault();
 
-            const submit = {
-              user: newUser,
-            }
-
-            console.log(submit.user);
-
-            if (submit.user) {
-              dispatch(registerUser(newUser))
-              setNewUserData((prevState) => {
-                return[
-                    ...prevState, state
-                ]
-            });
-            }
-            console.log(newUser);
+            if (state.name && state.email && state.password && state.password2 && state.errors) {
+              dispatch(registerUser(state))
+             }
 
     };
 
@@ -82,13 +64,13 @@ const Register = () => {
                onChange={HandleChange}
                name="name"
                type="text"
-               error={errors.name}
+               error={state.errors.name}
                className={classnames("", {
-                    invalid: errors.name
+                    invalid: state.errors.name
                   })}
                 />
                 <label htmlFor="name">Name</label>
-                <span className="red-text">{errors.name}</span>
+                <span className="red-text">{state.errors.name}</span>
 
               </div>
               <div className="input-field col s12">
@@ -96,13 +78,13 @@ const Register = () => {
                 onChange={HandleChange}
                 name="email"
                 type="email"
-                error={errors.email}
+                error={state.errors.email}
                 className={classnames("", {
-                    invalid: errors.email
+                    invalid: state.errors.email
                   })}
                 />
                 <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <span className="red-text">{state.errors.email}</span>
 
               </div>
               <div className="input-field col s12">
@@ -110,13 +92,13 @@ const Register = () => {
                onChange={HandleChange}
                name="password"
                type="password"
-               error={errors.password}
+               error={state.errors.password}
                className={classnames("", {
-                    invalid: errors.password
+                    invalid: state.errors.password
                   })}
                 />
                 <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
+                <span className="red-text">{state.errors.password}</span>
 
               </div>
               <div className="input-field col s12">
@@ -124,14 +106,14 @@ const Register = () => {
                    onChange={HandleChange}
                    name="password2"
                    type="password"
-                  error={errors.password2}
+                  error={state.errors.password2}
                    
                   className={classnames("", {
-                    invalid: errors.password2
+                    invalid: state.errors.password2
                   })}
                 />
                 <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                <span className="red-text">{state.errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
