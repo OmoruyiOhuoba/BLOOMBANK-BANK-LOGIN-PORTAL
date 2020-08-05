@@ -51,7 +51,7 @@ router.route("/login").post((req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    User.findOne([email])
+    User.findOne({email})
     .then(user => {
         if(!user){
             return res.status(404).json({email: "email Not Found"})

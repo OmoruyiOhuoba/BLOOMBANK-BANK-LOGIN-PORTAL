@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import classnames from "classnames";
-import {loginUser} from "../../actions/authActions";
+import {loginUser, setCurrentUser} from "../../actions/authActions";
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
 
 const Login = () => {
 
@@ -14,6 +16,10 @@ const [userData, setUserData] = useState({
 
 const dispatch = useDispatch();
 
+const { auth, errors } = useSelector(state => ({
+  auth: state.auth,
+  errors: state.errors,
+}));  
 
 
     const HandleChange = (event) => {
@@ -31,9 +37,21 @@ const dispatch = useDispatch();
     const HandleSubmit = (event) => {
         event.preventDefault();
 
-     
+        if(userData.email && userData.password && userData.errors){
+          dispatch(loginUser(userData))
+          
+        }
+        console.log(userData);
+
+    if(auth.isAuthenticated){
+        history.push("dashboard")
+      
     }
 
+    }
+
+
+  
     return (
         <div>
             <div className="container">

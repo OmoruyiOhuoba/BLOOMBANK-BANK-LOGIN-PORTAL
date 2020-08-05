@@ -1,20 +1,24 @@
 import React from "react";
+import {Provider} from "react-redux";
+import store from "../store";
 import LogoHeader from "./Layout/LogoHeader";
 import Footer from "./Layout/Footer";
 import Home from "./Home";
 import Register from "./Auth/Register";
 import Login from "./Auth/Login";
 import Dashboard from "./Dashboard";
-import {BrowserRouter as Router, Switch,Route} from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import {Router, Switch,Route} from "react-router-dom";
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
+
+
 
 
 const App = () => {
-    const dispatch = useDispatch();
 
     return (
-        <div>
-            <Router>     
+        <Provider store={store}> 
+            <Router history={history}>     
             <LogoHeader />
             
             <Switch>
@@ -26,8 +30,8 @@ const App = () => {
             </Switch>
             </Router>
             <Footer />
+            </Provider>
 
-        </div>
     )
 }
 
