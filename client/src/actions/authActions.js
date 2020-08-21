@@ -37,8 +37,8 @@ export const registerUser = (userData) => dispatch => {
         const decoded = jwt_decode(token);
         // Set current user
         dispatch(setCurrentUser(decoded));
-        history.push("dashboard");
-      })
+        history.push("/dashboard");
+        window.location.href = "./dashboard";      })
       .catch(err =>
         dispatch({
           type: GET_ERRORS,
@@ -63,7 +63,9 @@ export const setCurrentUser = decoded => {
 export const logoutUser = () => dispatch => {
         localStorage.removeItem("jwtToken");
         setAuthToken(false);
-        dispatch(setCurrentUser({}));
+        dispatch(setCurrentUser({}))
+        window.location.href = "./login";
+        
     };
 
 

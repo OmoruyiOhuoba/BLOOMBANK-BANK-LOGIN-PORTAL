@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {registerUser} from "../../actions/authActions";
@@ -17,6 +17,17 @@ const Register = () => {
     });
 
     const dispatch = useDispatch();
+    const { auth, errors } = useSelector(state => ({
+      auth: state.auth,
+      errors: state.errors,
+    })); 
+
+    useEffect(()=> {
+      if(auth.isAuthenticated){
+        window.location.href = "./dashboard";    
+        }
+
+    });
     
     const HandleChange = (event) =>{
         const {name, value} = event.target;
