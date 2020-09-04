@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     return(
         <div>
-            <h1><b>Hey</b>, **to display username** </h1>
+            <h1><b>Hey</b>, Joe </h1>
             <p style={{color: "gray"}}>You're logged into your bank account</p>
             <button type= "submit" onClick={HandleLogOut} > Log Out</button>
         </div>
